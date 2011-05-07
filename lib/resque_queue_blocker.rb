@@ -15,8 +15,9 @@ module Resque
   end
   
   class Worker
+    alias_method :queues_including_blocked, :queues
     def queues
-      ( @queues[0] == "*" ? Resque.queues.sort : @queues ) - blocked_queues
+      queues_including_blocked - blocked_queues
     end
     
     private
