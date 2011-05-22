@@ -1,7 +1,7 @@
 module Resque
   module Plugins
     module QueueBlocker
-      VERSION = "0.1.0"
+      VERSION = "0.2.0"
     end
   end
 end
