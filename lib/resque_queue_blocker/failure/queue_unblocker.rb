@@ -5,6 +5,9 @@ module Resque
 		# You must you this backend to avoid permenantly locking up the queue.
     # To use it, put this code in an initializer, Rake task, or wherever:
     #
+		# 	require 'resque/failure/multiple'
+		# 	require 'resque/failure/redis'
+		#
     #   Resque::Failure::Multiple.classes = [Resque::Failure::Redis, Resque::Failure::QueueUnblocker]
     #   Resque::Failure.backend = Resque::Failure::Multiple
     #

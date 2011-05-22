@@ -30,6 +30,9 @@ It is necessary to use `Resque::Failure::QueueUnblocker` as a failure backend in
 Example use with the default failure backend `Resque::Failure::Redis`:
 
 ``` ruby
+  require 'resque/failure/multiple'
+  require 'resque/failure/redis'
+
   Resque::Failure::Multiple.classes = [Resque::Failure::Redis, Resque::Failure::QueueUnblocker]
   Resque::Failure.backend = Resque::Failure::Multiple
 ```
