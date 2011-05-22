@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "resque-queue-blocker"
   s.version     = Resque::Plugins::QueueBlocker::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Oliver Searle-Barnes"]
+  s.authors     = ["Oliver Searle-Barnes", "Scott Ellard"]
   s.email       = ["oliver@opsb.co.uk"]
   s.homepage    = "http://github.com/opsb/resque-queue-blocker"
   s.summary     = "When job is in progress block other jobs in same queue from being executed"
