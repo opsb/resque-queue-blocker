@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    resque-queue-blocker (0.1.0)
+    resque-queue-blocker (0.2.0)
       resque (~> 1.0)
 
 GEM
