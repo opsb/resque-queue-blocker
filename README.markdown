@@ -21,3 +21,15 @@ For example:
 		end
 		
 When a SelfishJob is being run it will block any other jobs in the "selfish_jobs" queue. Other jobs in this queue will be blocked regardless of whether or not they extend Resque::Plugins::QueueBlocker.
+
+Failure Backend
+---------------
+
+It is necessary to use `Resque::Failure::QueueUnblocker` as a failure backend in order to avoid locking up the queues.
+
+Example use with the default failure backend `Resque::Failure::Redis`:
+
+``` ruby
+  Resque::Failure::Multiple.classes = [Resque::Failure::Redis, Resque::Failure::QueueUnblocker]
+  Resque::Failure.backend = Resque::Failure::Multiple
+```
