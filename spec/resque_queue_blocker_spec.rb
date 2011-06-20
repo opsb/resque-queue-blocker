@@ -1,11 +1,6 @@
 require 'spec_helper'
 
-class RepoJob
-  @queue = "repo1"
-  def perform
-    # does nothing
-  end
-end
+
 
 describe Resque::Plugins::QueueBlocker do
   context "when included in a job's class" do

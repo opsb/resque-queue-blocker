@@ -11,18 +11,17 @@ module Resque
         Resque.redis.srem "blocked_queues", queue                
       end
       alias_method :on_failure_with_queue_block, :after_perform_with_queue_block
+      
+      def self.blocked_queues
+        Resque.redis.smembers("blocked_queues")
+      end      
     end
   end
   
   class Worker
     alias_method :queues_including_blocked, :queues
     def queues
-      queues_including_blocked - blocked_queues
-    end
-    
-    private
-    def blocked_queues
-      redis.smembers("blocked_queues")
+      queues_including_blocked - Plugins::QueueBlocker.blocked_queues
     end
   end
 end

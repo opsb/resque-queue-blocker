@@ -1,0 +1,11 @@
+<h1>Blocked queues</h1>
+<table>
+	<thead>
+		<th>Queue</th>
+	</thead>
+	<tbody>
+		<% Resque::Plugins::QueueBlocker.blocked_queues.each do |queue| %>
+		<td><a href="<%= u "queues/#{queue}" %>" ><%= queue %></a></td>
+		<% end %>
+	</tbody>
+</table>
