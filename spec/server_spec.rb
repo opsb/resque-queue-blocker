@@ -9,8 +9,7 @@ describe ResqueQueueBlocker::Server do
   
   context "get blocked queues" do
     before do
-      Resque.enqueue RepoJob
-      Resque.redis.sadd("blocked_queues", "repo1")      
+      Resque.redis.sadd("blocked_queues", "repo1")
       get "/blocked%20queues"
     end
   
@@ -22,6 +21,17 @@ describe ResqueQueueBlocker::Server do
     
     it "should link to blocked queues" do
       last_response.body.should =~ %r{<a href="/queues/repo1" >repo1</a>}
+    end
+  end
+  
+  context "clear block" do
+    before do
+      Resque.redis.sadd("blocked_queues", "repo1")
+      post "/blocked%20queues/repo1/delete"
+    end
+    
+    it "should remove queue from blocked queues in redis" do
+      Resque.redis.smembers("blocked_queues").should_not include("repo1")
     end
   end
 end

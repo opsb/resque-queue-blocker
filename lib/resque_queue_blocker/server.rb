@@ -5,6 +5,10 @@ module ResqueQueueBlocker
         get '/blocked queues' do
           erb File.read(File.join(File.dirname(__FILE__), 'server/views/blocked_queues.erb'))
         end
+        
+        post '/blocked queues/:repo/delete' do
+          Resque::Plugins::QueueBlocker.unblock params[:repo]
+        end
       end
     end
   end
