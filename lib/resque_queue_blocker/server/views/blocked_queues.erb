@@ -2,10 +2,16 @@
 <table>
 	<thead>
 		<th>Queue</th>
+		<th>&nbsp;</th>
 	</thead>
 	<tbody>
-		<% Resque::Plugins::QueueBlocker.blocked_queues.each do |queue| %>
+		<% Resque::Plugins::QueueBlocker.blocked_queues.sort.each do |queue| %>
 		<td><a href="<%= u "queues/#{queue}" %>" ><%= queue %></a></td>
+		<td>
+			<form method="post" action="<%= u "blocked queues/#{queue}/delete" %>">
+				<input type="submit" value="Clear block" />
+			</form>
+		</td>
 		<% end %>
 	</tbody>
 </table>

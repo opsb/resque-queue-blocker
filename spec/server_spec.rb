@@ -33,5 +33,10 @@ describe ResqueQueueBlocker::Server do
     it "should remove queue from blocked queues in redis" do
       Resque.redis.smembers("blocked_queues").should_not include("repo1")
     end
+    
+    it "should redirect to blocked queues" do
+      last_response.should be_redirect
+      last_response["Location"].should == "http://example.org/blocked%20queues"
+    end
   end
 end

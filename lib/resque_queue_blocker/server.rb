@@ -8,6 +8,7 @@ module ResqueQueueBlocker
         
         post '/blocked queues/:repo/delete' do
           Resque::Plugins::QueueBlocker.unblock params[:repo]
+          redirect u("blocked%20queues")
         end
       end
     end
