@@ -6,12 +6,14 @@
 	</thead>
 	<tbody>
 		<% Resque::Plugins::QueueBlocker.blocked_queues.sort.each do |queue| %>
+		<tr>
 		<td><a href="<%= u "queues/#{queue}" %>" ><%= queue %></a></td>
 		<td>
 			<form method="post" action="<%= u "blocked queues/#{queue}/delete" %>">
 				<input type="submit" value="Clear block" />
 			</form>
 		</td>
+		</tr>
 		<% end %>
 	</tbody>
 </table>
